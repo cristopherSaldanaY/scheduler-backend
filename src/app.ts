@@ -1,6 +1,10 @@
 import express, { Application } from 'express'
 import routerHealth from './helpers/health'
 import HandlerErrors from './helpers/errors'
+import routerUser from './modules/user/interfaces/http/user.routes'
+import routerOrganization from './modules/organization/interfaces/http/organization.routes'
+import routerVehicle from './modules/vehicle/interfaces/http/vehicle.routes'
+import routerDriver from './modules/driver/interfaces/http/driver.routes'
 
 class App {
 	readonly expressApp: Application
@@ -9,7 +13,7 @@ class App {
 		this.expressApp = express()
 		this.mountHealthCheck()
 		this.mountMiddlewares()
-
+		this.mountRoutes()
 		this.mountError()
 	}
 
@@ -19,8 +23,14 @@ class App {
 
 	mountMiddlewares() {
 		this.expressApp.use(express.json())
-
 		this.expressApp.use(express.urlencoded({ extended: true }))
+	}
+
+	mountRoutes(): void {
+		this.expressApp.use('/user', routerUser)
+		this.expressApp.use('/organization', routerOrganization)
+		this.expressApp.use('/vehicle', routerVehicle)
+		this.expressApp.use('/driver', routerDriver )
 	}
 
 	mountError(): void {
