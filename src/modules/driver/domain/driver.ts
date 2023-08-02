@@ -6,9 +6,7 @@ export default class Driver implements IEntity<DriverProperties, DriverUpdate> {
     private name: string
     private lastname: string
     private active: boolean
-    private organization: {
-        nid: string
-    }
+    private organization_id: string
     private readonly nid: string
 
     constructor(driverProperties: DriverProperties){
@@ -20,7 +18,7 @@ export default class Driver implements IEntity<DriverProperties, DriverUpdate> {
         return{
             name: this.name,
             lastname: this.lastname,
-            organization: this.organization,
+            organization_id: this.organization_id,
             active: this.active,
             nid: this.nid
         }

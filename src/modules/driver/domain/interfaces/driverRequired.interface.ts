@@ -2,7 +2,5 @@
 export interface DriverRequired {
     name: string
     lastname: string
-    organization: {
-        nid: string
-    }
+    organization_id: string
 }

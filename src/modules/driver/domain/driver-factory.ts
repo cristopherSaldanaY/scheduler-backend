@@ -7,7 +7,7 @@ import { DriverProperties } from './types/driverProperties.type'
 export type DriverResult = Result<Driver, | DriverNameRequiredException | DriverLastnameRequiredException>
 
 export default class DriverFactory {
-    async create(name: string, lastname: string, organization: {nid: string}): Promise<DriverResult>{
+    async create(name: string, lastname: string, organization_id: string): Promise<DriverResult>{
         if(!name || name.trim() === ''){
             return err(new DriverNameRequiredException())
         }
@@ -19,7 +19,7 @@ export default class DriverFactory {
         const driverProperties: DriverProperties = {
             name,
             lastname,
-            organization: {nid: organization.nid},
+            organization_id,
             nid: uuidv4()
         }
 

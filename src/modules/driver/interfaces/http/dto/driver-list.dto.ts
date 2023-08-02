@@ -5,9 +5,7 @@ interface DriverDTO {
 	nid: string
 	name: string
 	lastname: string
-	organization: {
-		nid: string
-	}
+	organization_id: string
 }
 
 export type DriverListDTO = DriverDTO[]
@@ -19,7 +17,7 @@ export class DriverListMapping extends DTO<DriverProperties[], DriverListDTO> {
 				nid: driver.nid,
 				name: driver.name,
 				lastname: driver.lastname,
-				organization: driver.organization
+				organization_id: driver.organization_id
 			}
 		})
 	}

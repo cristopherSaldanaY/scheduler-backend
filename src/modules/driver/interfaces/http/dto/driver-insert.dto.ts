@@ -5,9 +5,7 @@ interface DriverDTO {
 	nid: string
 	name: string
 	lastname: string
-    organization:{
-        nid: string
-    }
+    organization_id: string
 }
 
 export type DriverInsertDTO = DriverDTO
@@ -18,7 +16,7 @@ export class DriverInsertMapping extends DTO<DriverProperties, DriverInsertDTO> 
             nid: data.nid,
             name: data.name,
             lastname: data.lastname,
-            organization: data.organization
+            organization_id: data.organization_id
         }
     }
 }

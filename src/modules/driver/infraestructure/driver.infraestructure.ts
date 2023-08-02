@@ -9,14 +9,18 @@ import { DriverNotFoundException } from '../domain/exceptions/driver.exception'
 export default class DriverInfraestructure implements DriverRepository {
 	async insert(driver: Driver): Promise<Driver> {
 		const driverInsert = new DriverEntity()
+		console.log(driver)
+		console.log(driverInsert)
 
-		const { nid, name, lastname, organization, active } = driver.properties()
-		console.log(organization)
+		const { nid, name, lastname, organization_id, active } = driver.properties()
+	
 		Object.assign(driverInsert, {
 			nid,
 			name,
 			lastname,
-			organization,
+			organization: {
+				nid: organization_id
+			},
 			active,
 		})
 
@@ -33,7 +37,7 @@ export default class DriverInfraestructure implements DriverRepository {
 				nid: el.nid,
 				name: el.name,
 				lastname: el.lastname,
-				organization: el.organization,
+				organization_id: el.organization.nid,
 				active: el.active,
 			})
 		})
@@ -52,7 +56,7 @@ export default class DriverInfraestructure implements DriverRepository {
 					nid: driverEntity.nid,
 					name: driverEntity.name,
 					lastname: driverEntity.lastname,
-					organization: driverEntity.organization,
+					organization_id: driverEntity.organization.nid,
 					active: driverEntity.active,
 				}),
 			)
@@ -75,7 +79,7 @@ export default class DriverInfraestructure implements DriverRepository {
 					nid: driverEntity.nid,
 					name: driverEntity.name,
 					lastname: driverEntity.lastname,
-					organization: driverEntity.organization,
+					organization_id: driverEntity.organization.nid,
 					active: driverEntity.active,
 				}),
 			)

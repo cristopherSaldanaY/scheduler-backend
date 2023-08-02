@@ -12,9 +12,9 @@ export default class {
 	}
 
     async insert(req: Request, res: Response, next: NextFunction){
-        const { name, lastname, organization } = req.body
+        const { name, lastname, organization_id } = req.body
 
-        const driverResult = await new DriverFactory().create(name, lastname, organization)
+        const driverResult = await new DriverFactory().create(name, lastname, organization_id)
 
         if(driverResult.isErr()){
             const err: IError = new Error(driverResult.error.message)
