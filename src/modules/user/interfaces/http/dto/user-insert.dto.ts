@@ -6,7 +6,9 @@ interface UserDTO {
 	username: string
 	email: string
 	national_id: string
-	organization_id: string
+	organizations:{
+        nid: string
+    } []
 }
 
 export type UserInsertDTO = UserDTO
@@ -18,7 +20,7 @@ export class UserInsertMapping extends DTO<UserProperties, UserInsertDTO> {
             username: data.username,
             email: data.email,
             national_id: data.national_id,
-            organization_id: data.organization_id
+            organizations: data.organizations
         }
     }
 }

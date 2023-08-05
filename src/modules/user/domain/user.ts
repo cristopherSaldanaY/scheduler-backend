@@ -7,7 +7,9 @@ export default class User implements IEntity<UserProperties, UserUpdate> {
 	private password: string
 	private email: string
 	private national_id: string
-	private organization_id: string
+	private organizations: {
+		nid: string
+	}[]
 	private active: boolean
 	private readonly subject: string
 
@@ -22,7 +24,7 @@ export default class User implements IEntity<UserProperties, UserUpdate> {
 			password: this.password,
 			email: this.email,
 			national_id: this.national_id,
-			organization_id: this.organization_id,
+			organizations: this.organizations,
 			active: this.active,
 			subject: this.subject,
 		}

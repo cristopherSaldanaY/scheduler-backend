@@ -9,6 +9,7 @@ export default class {
 	constructor(private application: DriverApplication) {
 		this.insert = this.insert.bind(this)
         this.list = this.list.bind(this)
+        this.listByOrganization = this.listByOrganization.bind(this)
 	}
 
     async insert(req: Request, res: Response, next: NextFunction){
@@ -30,6 +31,14 @@ export default class {
     async list(_req: Request, res: Response){
         const list = await this.application.list()
         const result = new DriverListMapping().execute(list.map( driver => driver.properties()))
+        res.json(result)
+    }
+
+    async listByOrganization(req: Request, res: Response){
+        const {nid } = req.params
+        const list = await this.application.listByOrganization(nid)
+
+        const result = new DriverListMapping().execute(list.map(driver => driver.properties()))
         res.json(result)
     }
 

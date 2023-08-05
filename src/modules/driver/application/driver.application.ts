@@ -13,6 +13,10 @@ export default class DriverApplication {
         return this.driverRepository.list()
     }
 
+    listByOrganization(nid: string){
+        return this.driverRepository.listByOrganization(nid)
+    }
+
     update(nid: string, driver: Partial<DriverUpdate>){
         return this.driverRepository.update(nid, driver)
     }

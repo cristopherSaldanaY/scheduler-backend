@@ -14,7 +14,9 @@ export default class VehicleInfraestructure implements VehicleRepository {
 		Object.assign(vehicleInsert, {
 			nid,
 			plate,
-			organization_id,
+			organization: {
+				nid: organization_id
+			},
 			active,
 		})
 
@@ -30,11 +32,25 @@ export default class VehicleInfraestructure implements VehicleRepository {
 			return new Vehicle({
 				nid: el.nid,
 				plate: el.plate,
-				organization_id: el.organization_id,
+				organization_id: el.organizationNid,
 				active: el.active,
 			})
 		})
 	}
+
+	async listByOrganization(nid: string): Promise<Vehicle[]>{
+        const repo = DataBaseBootstrap.dataSource.getRepository(VehicleEntity)
+        const result = await repo.find({where:{ organizationNid: nid}})
+
+        return result.map((el: VehicleEntity) => {
+            return new Vehicle({
+				nid: el.nid,
+				plate: el.plate,
+				organization_id: el.organizationNid,
+				active: el.active,
+            })
+        })
+    }
 
 	async update(nid: string, vehicle: Partial<VehicleUpdate>): Promise<Result<Vehicle, VehicleNotFoundException>> {
 		const repo = DataBaseBootstrap.dataSource.getRepository(VehicleEntity)
@@ -49,7 +65,7 @@ export default class VehicleInfraestructure implements VehicleRepository {
 				new Vehicle({
 					nid: vehicleEntity.nid,
 					plate: vehicleEntity.plate,
-					organization_id: vehicleEntity.organization_id,
+					organization_id: vehicleEntity.organizationNid,
 					active: vehicleEntity.active,
 				}),
 			)
@@ -71,7 +87,7 @@ export default class VehicleInfraestructure implements VehicleRepository {
 				new Vehicle({
 					nid: vehicleEntity.nid,
 					plate: vehicleEntity.plate,
-					organization_id: vehicleEntity.organization_id,
+					organization_id: vehicleEntity.organizationNid,
 					active: vehicleEntity.active,
 				}),
 			)

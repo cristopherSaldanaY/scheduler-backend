@@ -4,5 +4,7 @@ export interface UserRequired {
     national_id: string
     username: string
     password: string
-    organization_id: string
+    organizations: {
+        nid: string
+    }[]
 }

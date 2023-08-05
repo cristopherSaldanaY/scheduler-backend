@@ -13,6 +13,10 @@ export default class UserApplication {
         return this.userRepository.list()
     }
 
+    login(username: string, password: string){
+        return this.userRepository.login(username, password)
+    }
+
     update(subject: string, user: Partial<UserUpdate>){
         return this.userRepository.update(subject, user)
     }

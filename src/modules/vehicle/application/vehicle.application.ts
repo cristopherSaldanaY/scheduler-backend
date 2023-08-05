@@ -13,6 +13,10 @@ export default class VehicleApplication {
 		return this.vehicleRepository.list()
 	}
 
+	listByOrganization(nid: string){
+        return this.vehicleRepository.listByOrganization(nid)
+    }
+
 	update(nid: string, vehicle: Partial<VehicleUpdate>) {
 		return this.vehicleRepository.update(nid, vehicle)
 	}

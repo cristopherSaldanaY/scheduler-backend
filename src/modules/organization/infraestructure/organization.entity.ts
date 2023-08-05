@@ -1,8 +1,8 @@
 import { DriverEntity } from '../../driver/infraestructure/driver.entity'
-import Driver from '../../../modules/driver/domain/driver'
 import { VehicleEntity } from '../../../modules/vehicle/infraestructure/vehicle.entity'
 import {UserEntity} from '../../user/infraestructure/user.entity'
-import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm'
+import { Column, Entity, ManyToMany, OneToMany, PrimaryColumn } from 'typeorm'
+import { RouteEntity } from '../../route/infraestructure/route.entity'
 
 
 @Entity({ name: 'organization' })
@@ -17,12 +17,15 @@ export class OrganizationEntity {
     @Column({ type: 'boolean', default: true})
     active: boolean
 
-    @OneToMany(() => UserEntity, user => user.organization_id)
+    @ManyToMany(() => UserEntity, user => user.organizations)
     users: UserEntity[];
 
-    @OneToMany(() => VehicleEntity, vehicle => vehicle.organization_id)
+    @OneToMany(() => VehicleEntity, vehicle => vehicle.organization)
     vehicles: VehicleEntity[];
 
     @OneToMany(() => DriverEntity, driver => driver.organization)
-    drivers: Driver[]
+    drivers: DriverEntity[]
+
+    @OneToMany(() => RouteEntity, route  => route.organization)
+    routes: RouteEntity[]
 }

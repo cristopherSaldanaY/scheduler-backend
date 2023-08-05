@@ -13,8 +13,11 @@ export default class UserFactory {
 		national_id: string,
 		username: string,
 		password: string,
-		organization_id: string,
+		organizations: {
+			nid: string
+		}[],
 	): Promise<UserResult> {
+		
 		if (!password || password.trim() === '') {
 			return err(new UserPasswordRequiredException())
 		}
@@ -30,7 +33,7 @@ export default class UserFactory {
 			national_id,
 			username,
 			password: passwordHash,
-			organization_id,
+			organizations,
 			subject: uuidv4(),
 		}
 

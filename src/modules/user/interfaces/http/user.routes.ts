@@ -20,6 +20,7 @@ class UserRouter {
 	mountRoutes() {
 		this.expressRouter.post('/insert', controller.insert)
 		this.expressRouter.get('/list', controller.list)
+		this.expressRouter.post('/login', controller.login)
 	}
 }
 
