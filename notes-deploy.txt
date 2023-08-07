@@ -1,0 +1,12 @@
+Carpeta: Deployment
+1. Copiar el archivo package.json
+2. Instalar las librerias (yarn install)
+3. Copiar el resto de archivos del codigo fuente
+4. Transpilar el codigo fuente (yarn run build)
+
+
+Carpeta: Production
+1. Copiar la carpeta node_modules que viene desde la carpeta Deployment
+2. Copiar el archivo package.json que viene desde la carpeta Deployment
+3. Copiar la carpeta dist
+4. Ejecutar el script (yarn run prod)

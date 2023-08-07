@@ -5,6 +5,7 @@ import DataBaseBootstrap from '../../../bootstrap/database.bootstrap'
 import { OrganizationUpdate } from '../domain/interfaces/organizationUpdate.interface'
 import { OrganizationNotFoundException } from '../domain/exceptions/organization.exception'
 import { Result, ok, err } from 'neverthrow'
+import databaseBootstrap from '../../../bootstrap/database.bootstrap'
 
 export default class OrganizationInfraestructure implements OrganizationRepository {
 	async insert(organization: Organization): Promise<Organization> {
@@ -32,6 +33,22 @@ export default class OrganizationInfraestructure implements OrganizationReposito
 				active: el.active,
 			})
 		})
+	}
+
+	async listOne(nid: string): Promise<Result<Organization, OrganizationNotFoundException>>{
+		const repo = databaseBootstrap.dataSource.getRepository(OrganizationEntity)
+
+		const result = await repo.findOne({where:{nid}})
+		if(!result){
+			return err(new OrganizationNotFoundException())
+		} else{
+			return ok(
+				new Organization({
+					nid: result.nid,
+					name: result.name
+				})
+			)
+		}
 	}
 
 	async update(

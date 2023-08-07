@@ -12,6 +12,7 @@ export default class UserInfraestructure implements UserRepository {
 		const userInsert = new UserEntity()
 
 		const { subject, username, password, email, national_id, active, organizations } = user.properties()
+
 		Object.assign(userInsert, {
 			subject,
 			username,
@@ -22,7 +23,6 @@ export default class UserInfraestructure implements UserRepository {
 			organizationsNid: organizations,
 		})
 
-		console.log(userInsert)
 
 		await DatabaseBootstrap.dataSource.getRepository(UserEntity).save(userInsert)
 
@@ -38,7 +38,6 @@ export default class UserInfraestructure implements UserRepository {
 			.leftJoinAndSelect('user.organizations', 'organizations')
 			.getMany()
 
-		console.log('infraestructura', result)
 		return result.map((el: UserEntity) => {
 			return new User({
 				username: el.username,
@@ -66,7 +65,7 @@ export default class UserInfraestructure implements UserRepository {
 						password: userFound.password,
 						email: userFound.email,
 						national_id: userFound.national_id,
-						organizations: userFound.organizations,
+						organizations: userFound.organizationsNid,
 						active: userFound.active,
 						subject: userFound.subject,
 					}),

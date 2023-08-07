@@ -52,6 +52,24 @@ export default class VehicleInfraestructure implements VehicleRepository {
         })
     }
 
+	async listOne(nid: string): Promise<Result<Vehicle, VehicleNotFoundException>>{
+		const repo = DataBaseBootstrap.dataSource.getRepository(VehicleEntity)
+		const result = await repo.findOne({where:{nid}})
+		
+		if(!result){
+			return err(new VehicleNotFoundException())
+		} else{
+			return ok(
+				new Vehicle({
+					nid: result.nid,
+					plate: result.plate,
+					organization_id: result.organizationNid,
+					active: result.active
+				})
+			)
+		} 
+	}
+
 	async update(nid: string, vehicle: Partial<VehicleUpdate>): Promise<Result<Vehicle, VehicleNotFoundException>> {
 		const repo = DataBaseBootstrap.dataSource.getRepository(VehicleEntity)
 

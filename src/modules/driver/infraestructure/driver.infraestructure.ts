@@ -42,6 +42,25 @@ export default class DriverInfraestructure implements DriverRepository {
 		})
 	}
 
+	async listOne(nid: string): Promise<Result<Driver, DriverNotFoundException>>{
+		const repo = databaseBootstrap.dataSource.getRepository(DriverEntity)
+		const result = await repo.findOne({where:{nid}})
+		
+		if(!result){
+			return err(new DriverNotFoundException())
+		} else{
+			return ok(
+				new Driver({
+					nid: result.nid,
+					name: result.name,
+					lastname: result.lastname,
+					organization_id: result.organizationNid,
+					active: result.active
+				})
+			)
+		}
+	}
+
 	async listByOrganization(nid: string): Promise<Driver[]> {
 		const repo = databaseBootstrap.dataSource.getRepository(DriverEntity)
 		const result = await repo.find({ where: { organizationNid: nid } })

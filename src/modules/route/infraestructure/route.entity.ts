@@ -9,10 +9,10 @@ export class RouteEntity {
 	nid: string
 
 	@Column({ type: 'timestamp' })
-	starts_at: Date
+	starts_at: string
 
 	@Column({ type: 'timestamp' })
-	ends_at: Date
+	ends_at: string
 
 	@Column({ type: 'varchar', length: 100 })
 	travel_time: string

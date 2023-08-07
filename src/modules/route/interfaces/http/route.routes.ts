@@ -21,6 +21,7 @@ class RouteRouter{
         this.expressRouter.get('/list', controller.list)
         this.expressRouter.get('/listByOrganization/:nid', controller.listByOrganization)
         this.expressRouter.put('/update/:nid', controller.update)
+        this.expressRouter.delete('/delete/:nid', controller.delete)
     }
 }
 

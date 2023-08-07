@@ -13,10 +13,10 @@ interface RouteDTO {
 	vehicle_id: string
 }
 
-export type RouteListDTO = RouteDTO[]
+export type RouteListByOrganizationDTO = RouteDTO[]
 
-export class RouteListMapping extends DTO<RouteProperties[], RouteListDTO> {
-	execute(data: RouteProperties[]): RouteListDTO {
+export class RouteListByOrganizationMapping extends DTO<RouteProperties[], RouteListByOrganizationDTO> {
+	execute(data: RouteProperties[]): RouteListByOrganizationDTO {
 		return data.map(route => {
 			return {
 				nid: route.nid,

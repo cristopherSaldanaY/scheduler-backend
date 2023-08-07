@@ -20,6 +20,7 @@ class DriverRouter {
         this.expressRouter.post('/insert', controller.insert)
         this.expressRouter.get('/list', controller.list)
         this.expressRouter.get('/listByOrganization/:nid', controller.listByOrganization)
+        this.expressRouter.get('/listOne/:nid', controller.listOne)
     }
 }
 

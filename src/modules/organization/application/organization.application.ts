@@ -12,6 +12,9 @@ export default class OrganizationApplication {
     list(){
         return this.organizationRepository.list()
     }
+    listOne(nid: string){
+        return this.organizationRepository.listOne(nid)
+    }
 
     update(nid: string, organization: Partial<OrganizationUpdate>){
         return this.organizationRepository.update(nid, organization)

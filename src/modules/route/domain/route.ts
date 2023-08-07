@@ -3,14 +3,16 @@ import { RouteProperties } from './types/routeProperties.type'
 import { RouteUpdate } from './interfaces/routeUpdate.interface'
 
 export default class Route implements IEntity<RouteProperties, RouteUpdate> {
-    private starts_at: Date
-    private ends_at: Date
+    private starts_at: string
+    private ends_at: string
     private travel_time: string
     private total_stops: number
     private action: string
     private organization_id: string
     private driver_id?: string
+    private driver_name?: string
     private vehicle_id?: string
+    private vehicle_plate?: string
     private active: boolean
     private nid: string
 
@@ -28,7 +30,9 @@ export default class Route implements IEntity<RouteProperties, RouteUpdate> {
             action: this.action,
             organization_id: this.organization_id,
             driver_id: this.driver_id,
+            driver_name: this.driver_name,
             vehicle_id: this.vehicle_id,
+            vehicle_plate: this.vehicle_plate,
             active: this.active,
             nid: this.nid
         }

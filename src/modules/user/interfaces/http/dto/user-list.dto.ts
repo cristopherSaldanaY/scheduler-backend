@@ -1,5 +1,5 @@
 import { UserProperties } from 'src/modules/user/domain/types/userProperties.type'
-import { DTO } from './dto.generic'
+import { DTO } from '../../../../shared/dto.generic'
 
 interface UserDTO {
 	subject: string

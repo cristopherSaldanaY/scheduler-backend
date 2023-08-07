@@ -13,6 +13,10 @@ export default class VehicleApplication {
 		return this.vehicleRepository.list()
 	}
 
+	listOne(nid: string){
+		return this.vehicleRepository.listOne(nid)
+	}
+
 	listByOrganization(nid: string){
         return this.vehicleRepository.listByOrganization(nid)
     }

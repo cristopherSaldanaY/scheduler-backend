@@ -7,12 +7,11 @@ export class AppService {
 
 	static get DBConfig(): DB_CONFIG {
 		return {
-			host: process.env.DB_HOST || 'localhost',
-			port: +process.env.DB_PORT || 5432,
-			entities: [process.env.DB_ENTITIES || 'src/**/*.entity.ts'],
-			username: process.env.DB_USER || 'adminUser',
-			password: process.env.DB_PASS || '12345',
-			database: process.env.DB_NAME || 'bddnode',
+			host: '35.232.45.61',
+			entities: ['dist/**/*.entity.'],
+			username: 'postgres',
+			password:  'routing.0811',
+			database: 'bddtest',
 			synchronize: true,
 			logging: process.env.DB_LOGG == 'true' ? true : false,
 		}

@@ -13,6 +13,10 @@ export default class DriverApplication {
         return this.driverRepository.list()
     }
 
+    listOne(nid: string){
+        return this.driverRepository.listOne(nid)
+    }
+
     listByOrganization(nid: string){
         return this.driverRepository.listByOrganization(nid)
     }

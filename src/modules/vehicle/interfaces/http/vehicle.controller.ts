@@ -4,12 +4,14 @@ import VehicleFactory from '../../domain/vehicle-factory';
 import { IError } from '../../../shared/ierror';
 import { VehicleInsertMapping } from './dto/vehicle-insert.dto';
 import { VehicleListMapping } from './dto/vehicle-list.dto';
+import { VehicleListOneMapping } from './dto/vehicle-listOne.dto';
 
 export default class {
 	constructor(private application: VehicleApplication) {
         this.insert = this.insert.bind(this)
         this.list = this.list.bind(this)
         this.listByOrganization = this.listByOrganization.bind(this)
+        this.listOne = this.listOne.bind(this)
     }
 
     async insert(req: Request, res: Response, next: NextFunction){
@@ -40,6 +42,19 @@ export default class {
 
         const result = new VehicleListMapping().execute(list.map(vehicle => vehicle.properties()))
         res.json(result)
+    }
+
+    async listOne(req: Request, res: Response){
+        const { nid } = req.params
+
+        const vehicleResult = await this.application.listOne(nid)
+
+        if(vehicleResult.isErr()){
+            return res.status(404).send(vehicleResult.error.message)
+        } else if(vehicleResult.isOk()){
+            const result = new VehicleListOneMapping().execute(vehicleResult.value.properties())
+            return res.json(result)
+        }
     }
 
     /*

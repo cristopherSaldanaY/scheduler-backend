@@ -6,6 +6,7 @@ interface UserDTO {
 	username: string
 	organizations: {
 		nid: string
+		name?: string
 	}[]
 }
 

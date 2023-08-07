@@ -22,3 +22,23 @@ export class RouteNotFoundException extends DomainException{
         return 'Route not found'
     }
 }
+
+export class RouteDriverConflictException extends DomainException{
+    constructor(){
+        super(RouteDriverConflictException.getMessage())
+        this.name = DomainExceptionCode.ROUTE_DRIVER_CONFLICT
+    }
+    static getMessage(){
+        return 'Driver schedule conflict with another route'
+    }
+}
+
+export class RouteVehicleConflictException extends DomainException{
+    constructor(){
+        super(RouteVehicleConflictException.getMessage())
+        this.name = DomainExceptionCode.ROUTE_VEHICLE_CONFLICT
+    }
+    static getMessage(){
+        return 'Vehicle schedule conflict with another route'
+    }
+}

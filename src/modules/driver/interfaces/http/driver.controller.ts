@@ -4,12 +4,14 @@ import DriverFactory from '../../domain/driver-factory'
 import { IError } from 'src/modules/shared/ierror'
 import { DriverInsertMapping } from './dto/driver-insert.dto'
 import { DriverListMapping } from './dto/driver-list.dto'
+import { DriverListOneMapping } from './dto/driver-listOne.dto'
 
 export default class {
 	constructor(private application: DriverApplication) {
 		this.insert = this.insert.bind(this)
         this.list = this.list.bind(this)
         this.listByOrganization = this.listByOrganization.bind(this)
+        this.listOne = this.listOne.bind(this)
 	}
 
     async insert(req: Request, res: Response, next: NextFunction){
@@ -42,11 +44,18 @@ export default class {
         res.json(result)
     }
 
-    /* 
-        async update(){}
-    
-        async delete(){}
-    */
+    async listOne(req: Request, res: Response){
+        const { nid } = req.params
+
+        const driverResult = await this.application.listOne(nid)
+
+        if(driverResult.isErr()){
+            return res.status(404).send(driverResult.error.message)
+        } else if(driverResult.isOk()){
+            const result = new DriverListOneMapping().execute(driverResult.value.properties())
+            return res.json(result)
+        }
+    }
 
 
 }
