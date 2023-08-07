@@ -2,7 +2,7 @@
 		"name": "scheduler-backend",
 		"version": "1.0.0",
 		"description": "api para prueba de ingreso routing",
-		"main": "index.js",
+		"main": "index.ts",
 		"scripts": {
 				"dev": "nodemon src/index.ts",
 				"format": "prettier --write .",
