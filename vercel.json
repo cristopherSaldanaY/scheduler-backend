@@ -3,33 +3,13 @@
     "builds": [
       {
         "src": "./dist/index.js",
-        "use": "@vercel/node"
+        "use": "@now/node"
       }
     ],
     "routes": [
       {
-        "src": "/organization",
-        "dest": "/dist/index.js"
-      },
-      {
-        "src": "/user",
-        "dest": "/dist/index.js"
-      },
-      {
-        "src": "/driver",
-        "dest": "/dist/index.js"
-      },
-      {
-        "src": "/vehicle",
-        "dest": "/dist/index.js"
-      },
-      {
-        "src": "/route",
-        "dest": "/dist/index.js"
-      },
-      {
         "src": "/(.*)",
-        "dest": "/"
+        "dest": "/dist/index.js"
       }
     ]
   }
