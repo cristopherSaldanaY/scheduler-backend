@@ -14,7 +14,7 @@ export class AppService {
 			//username: process.env.DB_USER || 'postgres',
 			//password: process.env.DB_PASS || 'routing.0811',
 			//database: process.env.DB_NAME || 'bddtest',
-			username: process.env.DB_USER || 'defualt',
+			username: process.env.DB_USER || 'default',
 			password: process.env.DB_PASS || 'PIp8v6QYwcZF',
 			database: process.env.DB_NAME || 'verceldb',
 			synchronize: true,
