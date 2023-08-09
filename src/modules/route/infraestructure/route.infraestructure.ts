@@ -50,6 +50,7 @@ export default class RouteInfraestructure implements RouteRepository {
 		return result.map((el: RouteEntity) => {
 			const formattedStartsAt = new Date(el.starts_at).toLocaleString('es-CL', { timeZone: 'America/Santiago' })
 			const formattedEndsAt = new Date(el.ends_at).toLocaleString('es-CL', { timeZone: 'America/Santiago' })
+
 			return new Route({
 				nid: el.nid,
 				starts_at: formattedStartsAt,
@@ -66,10 +67,8 @@ export default class RouteInfraestructure implements RouteRepository {
 	}
 
 	async listByOrganization(nid: string): Promise<Route[]> {
-		
 		const repo = DataBaseBootstrap.dataSource.getRepository(RouteEntity)
-		const result = await repo.find({ where: { organizationNid: nid } }) 
-
+		const result = await repo.find({ where: { organizationNid: nid } })
 
 		return result.map((el: RouteEntity) => {
 			const formattedStartsAt = new Date(el.starts_at).toLocaleString('es-CL', { timeZone: 'America/Santiago' })

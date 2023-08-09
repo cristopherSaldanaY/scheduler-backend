@@ -18,7 +18,7 @@ export class AppService {
 			password: process.env.DB_PASS || 'PIp8v6QYwcZF',
 			database: process.env.DB_NAME || 'verceldb',
 			synchronize: true,
-			logging: process.env.DB_LOGG == 'true' ? true : false,
+			logging: false,
 			extra: {
 				ssl: {
 					rejectUnauthorized: false,
