@@ -50,6 +50,7 @@ export default class RouteInfraestructure implements RouteRepository {
 		return result.map((el: RouteEntity) => {
 			const formattedStartsAt = new Date(el.starts_at).toLocaleString('es-CL', { timeZone: 'America/Santiago' })
 			const formattedEndsAt = new Date(el.ends_at).toLocaleString('es-CL', { timeZone: 'America/Santiago' })
+			console.log(formattedStartsAt, formattedEndsAt)
 
 			return new Route({
 				nid: el.nid,
